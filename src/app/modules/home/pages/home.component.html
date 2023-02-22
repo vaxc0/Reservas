@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title col-sm-12">
+                <h2 class="title">UDES Reserva de Espacios Fisicos</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <accordion>
+                    <accordion-group heading="Espacios Fisicos">
+                        This content is straight in the template.
+                    </accordion-group>
+                    <accordion-group heading="Reglas">
+                        <p>Some content</p>
+                    </accordion-group>
+                    <accordion-group heading="Asignaciones">
+                        <p>Some content</p>
+                    </accordion-group>
+                </accordion>
+
+                <button [routerLink]="['/galileo']" routerLinkActive="router-link-active" class="btn btn-primary">Ir a
+                    Galileo</button>
+            </div>
+            <div class="col">
+
+                <accordion>
+                    <accordion-group heading="Espacios Fisicos">
+                        This content is straight in the template.
+                    </accordion-group>
+                    <accordion-group heading="Reserva">
+                        <p>Some content</p>
+                    </accordion-group>
+                    <accordion-group heading="Consulta">
+                        <p>Some content</p>
+                    </accordion-group>
+                </accordion>
+
+                <button [routerLink]="['/genesis']" routerLinkActive="router-link-active" class="btn btn-primary">Ir a
+                    Genesis</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-sm-12">footer</div>
+        </div>
+    </div>
+</body>
+
+</html>
