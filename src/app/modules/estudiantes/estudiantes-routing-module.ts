@@ -4,9 +4,13 @@ import { EstudiantesComponent } from './pages/estudiantes.component';
 
 const routes: Routes = [
     {
-        path: '', component: EstudiantesComponent,
+        path: '',
         children: [
-            
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            {
+                path: 'dashboard', title: 'Portal Genesis',
+                component:EstudiantesComponent
+            },
         ]
     }
 ];

@@ -16,41 +16,19 @@
         </div>
         <div class="row">
             <div class="col">
-                <accordion>
-                    <accordion-group heading="Espacios Fisicos">
-                        This content is straight in the template.
-                    </accordion-group>
-                    <accordion-group heading="Reglas">
-                        <p>Some content</p>
-                    </accordion-group>
-                    <accordion-group heading="Asignaciones">
-                        <p>Some content</p>
-                    </accordion-group>
-                </accordion>
-
-                <button [routerLink]="['/galileo']" routerLinkActive="router-link-active" class="btn btn-primary">Ir a
+                <div class="subtitle">Como Administrador segun tu rol puedes</div>
+                <acordeonComp [groups]="groupsGal" />
+                <button [routerLink]="['galileo']" routerLinkActive="router-link-active"
+                    class="border btn btn-primary">Ir a
                     Galileo</button>
             </div>
             <div class="col">
-
-                <accordion>
-                    <accordion-group heading="Espacios Fisicos">
-                        This content is straight in the template.
-                    </accordion-group>
-                    <accordion-group heading="Reserva">
-                        <p>Some content</p>
-                    </accordion-group>
-                    <accordion-group heading="Consulta">
-                        <p>Some content</p>
-                    </accordion-group>
-                </accordion>
-
-                <button [routerLink]="['/genesis']" routerLinkActive="router-link-active" class="btn btn-primary">Ir a
+                <div class="subtitle">Como Estudiante puedes</div>
+                <acordeonComp [groups]="groupsGen" />
+                <button [routerLink]="['genesis']" routerLinkActive="router-link-active"
+                    class="border btn btn-primary">Ir a
                     Genesis</button>
             </div>
-        </div>
-        <div class="row">
-            <div class=" col-sm-12">footer</div>
         </div>
     </div>
 </body>

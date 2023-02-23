@@ -6,12 +6,8 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            { path: '', redirectTo: 'login', pathMatch: 'full' },
-            {
-                path: 'login', title: 'Iniciar sesion en Galileo',
-                loadChildren:() => import('../auth/auth.module').then((m) => m.AuthModule)
-            },
-            { path: 'dashboard', component: AdminComponent, title: 'Portal Galileo' }
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: 'dashboard', component: AdminComponent, }
         ]
     }
 ];

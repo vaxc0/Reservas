@@ -1,0 +1,7 @@
+<accordion [isAnimated]="true">
+    <accordion-group *ngFor="let group of groups" [heading]="group.title">
+        <div class="text" aria-multiline="true">
+            {{ group?.content }}
+        </div>
+    </accordion-group>
+</accordion>

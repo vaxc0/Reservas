@@ -1,0 +1,26 @@
+<div class="card">
+    <form>
+        <div class="user-box">
+            <input (change)="validar()" type="text" name="documento" [required]="true" maxlength="10"
+                [(ngModel)]="data.documento">
+            <label>Documento</label>
+        </div>
+        <div class="user-box">
+            <input type="password" name="password" [required]="true" [(ngModel)]="data.password">
+            <label>Contraseña</label>
+        </div>
+        <div class="user-box">
+            <input type="password" name="rePassword" [required]="true" [(ngModel)]="data.password">
+            <label>Confirma tu Contraseña</label>
+        </div>
+        <div class="user-box">
+            <select class="form-select" id="roles" (change)="onSelect($event)" >
+                <option value="">Selecciona Rol (Develop)</option>
+                <option *ngFor="let rol of roles" [value]="rol.id">{{rol.rol}}</option>
+            </select>
+        </div>
+        <button (click)="onSubmit()" class="btn btn-primary" type="submit">Enviar</button>
+    </form>
+
+    <!--   {{data | json}} -->
+</div>

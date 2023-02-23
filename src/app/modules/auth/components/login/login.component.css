@@ -1,0 +1,46 @@
+.card {
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px #0000006b;
+    border-radius: 10px;
+    /* background-color: var(--gris-resalto); */
+}
+
+.card .user-box {
+    position: relative;
+}
+
+.card .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--gris-resalto);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid var(--gris-resalto);
+    outline: none;
+    background: transparent;
+}
+
+.card .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--gris-resalto);
+    pointer-events: none;
+    transition: .5s;
+}
+
+.card .user-box input:focus~label,
+.card .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: var(--azul-resalto);
+    font-size: 12px;
+}

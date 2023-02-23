@@ -1,0 +1,14 @@
+<div class="card">
+  <form>
+    <div class="user-box">
+      <input (change)="validar()" type="text" name="documento" [required]="true" maxlength="10" [(ngModel)]="data.documento">
+      <label>Documento</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" [required]="true" [(ngModel)]="data.password">
+      <label>Contraseña</label>
+    </div>
+    <button (click)="onSubmit()" class="btn btn-primary" type="submit">Enviar</button>
+  </form>
+<!--   {{data | json}} -->
+</div>
