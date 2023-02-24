@@ -1,4 +1,4 @@
-export interface Acordeon {
+export interface AcordeonType {
     title: string;
     content: string;
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AcordeonType } from 'src/app/core/data/models/AcordeonType.model';
+import { AcordeonType } from 'src/app/core/data/interfaces/acordeonType.interface';
 
 @Component({
   selector: 'app-home',

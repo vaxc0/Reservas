@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { UserLogin } from 'src/app/core/data/interfaces/formLogin.inteface';
+import { UserLoginType } from 'src/app/core/data/interfaces/formLoginType.inteface';
 import { CryptDecrypt } from 'src/app/core/shared/utils/crypt';
 import { Validate } from 'src/app/core/shared/utils/validate';
 
 @Component({
-  selector: 'app-login',
+  selector: 'loginComponent',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  data: UserLogin = {
+  data: UserLoginType = {
     documento: '',
     password: '',
     docEsNumero: false

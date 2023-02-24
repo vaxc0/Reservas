@@ -1,4 +1,4 @@
-export interface UserLogin {
+export interface UserLoginType {
     documento: string;
     password: string;
     docEsNumero:boolean;

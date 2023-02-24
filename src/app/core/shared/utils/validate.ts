@@ -11,4 +11,7 @@ export class Validate {
         const TieneLetras = /[a-z]/
         return !TieneLetras.test(strnum.trim())
     }
+    validarIgualContraseña(pass:string,repass:string){
+        return pass == repass
+    }
 }

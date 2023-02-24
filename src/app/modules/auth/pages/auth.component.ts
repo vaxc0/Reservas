@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RegisterComponent } from '../components/register/register.component';
 
 @Component({
   selector: 'app-auth',
@@ -7,26 +8,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  public dataPortal:any
-
+  public dataPortal: any = {}
 
   constructor(
-    private route:ActivatedRoute
-  ){}
-  ngOnInit(){
-    let aux
-    this.route.paramMap.subscribe(params=>{
-       aux = params.get('portal')
+    private registerComponent: RegisterComponent,//importe del hijo para enviar data
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    let portal
+    this.route.paramMap.subscribe(params => {
+      portal = params.get('portal')
     })
-    if(aux =='galileo'){
-      this.dataPortal={
-        nombre:"Galileo"
-      }
-    }else if(aux=='genesis'){
-      this.dataPortal={
-        nombre:"Genesis"
-      }
-    }
+    if (portal == 'galileo') this.dataPortal['nombre'] = "Galileo"
+    else if (portal == 'genesis') this.dataPortal['nombre'] = "Genesis"
+    this.sendData()
   }
 
+  sendData() {//envia informacion a un hijo
+    this.registerComponent.bindData(this.dataPortal)
+  }
 }

@@ -1,6 +1,6 @@
-import { Rol } from './../interfaces/rol.interface';
+import { RolType } from '../interfaces/rolType.interface';
 
-export class RolType implements Rol {
+export class Rol implements RolType {
     constructor(
         public id: number,
         public rol: string,

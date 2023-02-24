@@ -13,6 +13,9 @@
 .card .user-box {
     position: relative;
 }
+.card .user-box .options{
+    margin-bottom: 20px;
+}
 
 .card .user-box input {
     width: 100%;

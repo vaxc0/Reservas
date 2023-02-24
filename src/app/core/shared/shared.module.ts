@@ -13,6 +13,8 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 //ngb
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RolesService } from "../services/roles.service";
+import { UsuariosService } from "../services/usuarios.service";
 
 @NgModule({
     imports: [
@@ -43,7 +45,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         TypeaheadModule,
         
     ],
-    providers: []
+    providers: [//servicios
+        RolesService,
+        UsuariosService
+    ]
 })
 
 export class SharedModule {

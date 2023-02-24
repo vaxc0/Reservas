@@ -1,26 +1,25 @@
 <div class="card">
-    <form>
+    <form (change)="validar()">
         <div class="user-box">
-            <input (change)="validar()" type="text" name="documento" [required]="true" maxlength="10"
-                [(ngModel)]="data.documento">
+            <input type="text" name="documento" [required]="true" maxlength="10" [(ngModel)]="dataForm.documento">
             <label>Documento</label>
         </div>
         <div class="user-box">
-            <input type="password" name="password" [required]="true" [(ngModel)]="data.password">
+            <input type="password" name="password" [required]="true" [(ngModel)]="dataForm.password">
             <label>Contraseña</label>
         </div>
         <div class="user-box">
-            <input type="password" name="rePassword" [required]="true" [(ngModel)]="data.password">
+            <input type="password" name="rePassword" [required]="true" [(ngModel)]="dataForm.rePassword">
             <label>Confirma tu Contraseña</label>
         </div>
-        <div class="user-box">
-            <select class="form-select" id="roles" (change)="onSelect($event)" >
-                <option value="">Selecciona Rol (Develop)</option>
+        <div class="user-box ">
+            <select class="form-select options" id="roles" (change)="onSelect($event)">
+                <option value="0">Selecciona Rol (Develop)</option>
                 <option *ngFor="let rol of roles" [value]="rol.id">{{rol.rol}}</option>
             </select>
         </div>
-        <button (click)="onSubmit()" class="btn btn-primary" type="submit">Enviar</button>
+        <button (click)="onSubmit()" class="btn btn-primary " type="submit"
+            [disabled]="!dataForm.enviar" name="btnEnviar">Enviar</button>
     </form>
-
-    <!--   {{data | json}} -->
+<!--     {{dataForm | json}} -->
 </div>
