@@ -1,5 +1,5 @@
 export interface UsuarioType {
-    id_rol: number
+    id_rol?: number
     documento: number
     nombre?: string
     apellido?: string

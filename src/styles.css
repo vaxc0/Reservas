@@ -11,3 +11,6 @@
 /* body{
     background-color:#fff;
 } */
+.custom-panel{/* css del sidemenu off canvas*/
+    background-color: var(--gris-resalto);
+}

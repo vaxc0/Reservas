@@ -1,13 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PerfilComponent } from 'src/app/core/shared/components/perfil/perfil.component';
 import { AdminComponent } from './pages/admin.component';
+import { AsignacionManualComponent } from './pages/asignacion-manual/asignacion-manual.component';
+import { EspaciosFisicosComponent } from './pages/espacios-fisicos/espacios-fisicos.component';
+import { EstablecerReglasComponent } from './pages/establecer-reglas/establecer-reglas.component';
+import { VisualizarReservasComponent } from './pages/visualizar-reservas/visualizar-reservas.component';
 
 const routes: Routes = [
     {
         path: '',
         children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', component: AdminComponent, }
+            // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: '', loadChildren: () => import('../auth/auth.module').then((m) => m.AuthModule) },
+            {
+                path: 'dashboard', component: AdminComponent,
+                children: [
+                    {path:'espacios_f',component:EspaciosFisicosComponent},
+                    {path:'reglas',component:EstablecerReglasComponent},
+                    {path:'reservas',component:VisualizarReservasComponent},
+                    {path:'asignacion',component:AsignacionManualComponent},
+                    {path:'perfil',component:PerfilComponent},
+                ]
+            }
         ]
     }
 ];

@@ -1,1 +1,30 @@
-<h2>portal Galileo admin works!</h2>
+<nav class="navbar navbar-expand-sm bg-body-primary">
+    <div class="container ">
+        <!-- menu adminsitracion -->
+        <side-menu></side-menu>
+        <!-- logo -->
+        <a class="navbar-brand">UDES Reservas</a>
+        <div class="nav navbar-default" id="navbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!--  rutas -->
+                <li *ngFor="let item of listRutasNav" class="nav-item">
+                    <a class="nav-link active" aria-current="page" [href]="item?.ruta">{{item?.nombre}}</a>
+                </li>
+                <!-- perfil dropdown-->
+                <dropdownComponent [textoBtn]="nombre" [arrayOpciones]="opsDropdown" />
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-child">
+    <div class="row container-fill">
+        <div class="col sm-12 md-11 lg-11 xl-11">
+            <router-outlet />
+        </div>
+        <div class="container-acord">
+            <a>Tus funciones disponibles:</a>
+            <acordeonComp [groups]="textosAdmin" />
+        </div>
+    </div>
+</div>
+<!--   md-lg-10   md-lg-2  -->

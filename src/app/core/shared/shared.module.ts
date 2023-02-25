@@ -13,8 +13,15 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 //ngb
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//services
 import { RolesService } from "../services/roles.service";
 import { UsuariosService } from "../services/usuarios.service";
+import { EspaciosFisicosService } from "../services/espaciosFisicos.service";
+import { BloquesService } from "../services/bloque.service";
+import { FacultadesService } from "../services/facultad.service";
+import { TiposService } from "../services/tipo.service";
+import { ListOpcionesComponent } from './components/list-opciones/list-opciones.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 @NgModule({
     imports: [
@@ -29,6 +36,8 @@ import { UsuariosService } from "../services/usuarios.service";
         NotFoundComponent,
         AcordeonComponent,
         DropdownComponent,
+        ListOpcionesComponent,
+        PerfilComponent,
     ],
     exports: [
         HttpClientModule,
@@ -39,15 +48,19 @@ import { UsuariosService } from "../services/usuarios.service";
         NotFoundComponent,
         AcordeonComponent,
         DropdownComponent,
+        ListOpcionesComponent,
         NgbModule,
         AccordionModule,
         BsDropdownModule,
         TypeaheadModule,
-        
     ],
     providers: [//servicios
         RolesService,
-        UsuariosService
+        UsuariosService,
+        EspaciosFisicosService,
+        BloquesService,
+        FacultadesService,
+        TiposService,
     ]
 })
 

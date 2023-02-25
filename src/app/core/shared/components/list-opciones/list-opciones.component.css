@@ -1,0 +1,6 @@
+.list-group-item {
+    margin: 4px 0px;
+}
+.list-group :hover{
+    background-color: var(--azul-resalto);
+}

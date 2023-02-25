@@ -4,11 +4,12 @@ import { AuthRoutingModule } from "./auth-rouitng.component";
 import { AuthComponent } from "./pages/auth.component";
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthService } from "./service/auth.service";
 
 @NgModule({
     imports: [
         AuthRoutingModule,
-        SharedModule
+        SharedModule,
     ],
     declarations: [
         AuthComponent,
@@ -16,9 +17,10 @@ import { RegisterComponent } from './components/register/register.component';
         RegisterComponent
     ],
     exports: [
-
     ],
-    providers: []
+    providers: [//servicio
+        AuthService
+    ]
 })
 
 export class AuthModule {

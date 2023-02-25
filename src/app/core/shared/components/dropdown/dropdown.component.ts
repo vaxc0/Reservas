@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+import { OpcionesType } from 'src/app/core/data/interfaces/ui/opcionesType.interface';
 
 @Component({
   selector: 'dropdownComponent',
@@ -8,6 +9,5 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 })
 export class DropdownComponent {
   @Input() textoBtn: string = ''
-  @Input() arrayOpciones:Array<any> = []
+  @Input() arrayOpciones: OpcionesType[] = []
 }
-//queda en desarollo

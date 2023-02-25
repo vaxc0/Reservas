@@ -16,8 +16,8 @@ export class UsuariosService {
         private http: HttpClient
     ) { }
 
-    getUsers(): Observable<any> {
-        return this.http.get<any>(`${this.urlBase}${HttpApi.Usuarios}`)
+    getUsers(): Observable<Usuario[]> {
+        return this.http.get<Usuario[]>(`${this.urlBase}${HttpApi.Usuarios}`)
     }
     getUser(idU:string): Observable<Usuario> {
         return this.http.get<Usuario>(`${this.urlBase}${HttpApi.Usuarios}${idU}`)

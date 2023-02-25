@@ -6,10 +6,14 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            /* { path: '', redirectTo: 'sign-in', pathMatch: 'full' }, */
+            {path:'',loadChildren:() => import('../auth/auth.module').then((m) => m.AuthModule)},
             {
                 path: 'dashboard', title: 'Portal Genesis',
-                component:EstudiantesComponent
+                component:EstudiantesComponent,
+                children:[
+
+                ]
             },
         ]
     }

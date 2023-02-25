@@ -9,8 +9,8 @@ const routes: Routes = [
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   },
   { path: 'home/:portal', loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule) },
-  // { path: 'galileo/:portal', loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule) },
-  // { path: 'genesis/:portal', loadChildren: () => import('./modules/estudiantes/estudiantes.module').then(m => m.EstudiantesModule) },
+  { path: 'galileo', loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule) },
+  { path: 'genesis', loadChildren: () => import('./modules/estudiantes/estudiantes.module').then(m => m.EstudiantesModule) },
   { path: '**', component: NotFoundComponent }
 ];
 
