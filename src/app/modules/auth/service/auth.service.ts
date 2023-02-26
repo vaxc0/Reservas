@@ -5,6 +5,7 @@ import { Rol } from 'src/app/core/data/models/rol.model';
 import { CryptDecrypt } from 'src/app/core/shared/utils/crypt';
 import { Router } from '@angular/router';
 import { RolesService } from 'src/app/core/services/roles.service';
+import { ROLES } from 'src/app/constants/roles-guard';
 
 @Injectable({
     providedIn: 'root'
@@ -38,6 +39,14 @@ export class AuthService implements OnInit {
                 }
             })
     }
+    public isLoggedIn(): boolean {
+        let estaLoggeado = false
+        try {
+            const user = sessionStorage.getItem('currentUser')
+            if (user != null) estaLoggeado = true
+        } catch (error) {}
+        return estaLoggeado
+    }
     public loggOut() {
         sessionStorage.removeItem('currentUser')
         this.router.navigate(['/home'])
@@ -50,16 +59,21 @@ export class AuthService implements OnInit {
         if (current != null) this.auxCurrent = JSON.parse(current)
         return this.auxCurrent
     }
-    public isAdmin(): boolean {
-        return this.hasRol(1)
-    }
-    public isOpeario(): boolean {
-        return this.hasRol(2)
-    }
-    public isEstudiante(): boolean {
-        return this.hasRol(3)
-    }
-    public hasRol(id: number): boolean {
-        return this.getCurrentUser().id_rol == id
+    // public isAdmin(): boolean {
+    //     return this.hasRol(1)
+    // }
+    // public isOpeario(): boolean {
+    //     return this.hasRol(2)
+    // }
+    // public isEstudiante(): boolean {
+    //     return this.hasRol(3)
+    // }
+    public hasRol(roles: ROLES[]): boolean {
+        let tieneRol = false
+        try {
+            const rolUser = this.getCurrentUser().id_rol
+            if(rolUser!=undefined && roles.includes(rolUser) ) tieneRol = true
+        } catch (error) {}
+        return tieneRol
     }
 }

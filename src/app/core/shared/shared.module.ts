@@ -28,6 +28,7 @@ import { ToastService } from "../services/toast.service";
 import { ListaEspaciosfComponent } from './components/lista-espaciosf/lista-espaciosf.component';
 import { ReservasService } from "../services/reservas.service";
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AuthGuard, RoleGuard } from "../guards";
 
 @NgModule({
     imports: [
@@ -78,7 +79,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
         FacultadesService,
         TiposService,
         ToastService,
-        ReservasService
+        ReservasService,
+        AuthGuard,
+        RoleGuard
     ]
 })
 
