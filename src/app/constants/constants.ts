@@ -72,5 +72,5 @@ export class Constants {
             content: ['Reservar el espacio fisico', 'Cancelar tus reservas']
         }
     ]
-
+    
 }

@@ -1,1 +1,35 @@
-<p>estudiantes works!</p>
+<nav class="navbar navbar-expand-sm bg-body-primary">
+    <div class="container ">
+        <a class="navbar-brand">Portal Genesis</a>
+        <div class="nav navbar-default" id="navbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="navbar-brand">{{nombre}}</a>
+            </ul>
+            <button class="btn btn-secondary" (click)="logOut()">Cerrar Sesión</button>
+        </div>
+    </div>
+</nav>
+<div class="container container-child">
+    <div class="row container-fill">
+        <div class="col ">
+            <accordion [isAnimated]="true">
+                <accordion-group class="acordeon-group" heading="Realizar Reserva">
+                    <add-reservaComp />
+                </accordion-group>
+            </accordion>
+            <accordion [isAnimated]="true">
+                <accordion-group class="acordeon-group" heading="Consultar Reservas">
+                </accordion-group>
+            </accordion>
+            <accordion [isAnimated]="true">
+                <accordion-group class="acordeon-group" heading="Cancelar Reserva">
+                </accordion-group>
+            </accordion>
+        </div>
+        <div class="col col-md-3 container-acord">
+            <a>Tus funciones disponibles:</a>
+            <acordeonComp [groups]="textosEstudiante" />
+        </div>
+    </div>
+</div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

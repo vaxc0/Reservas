@@ -1,0 +1,18 @@
+.info-user label{
+    margin: 10px 4px;
+}
+.input-edad{
+    width: 60px;
+}
+.input-nombre{
+    width: 250px;
+}
+.input-apellido{
+    width: 250px;
+}
+.input-carrera{
+    width: 80%;
+}
+.btn{
+    margin-top: 6px;
+}

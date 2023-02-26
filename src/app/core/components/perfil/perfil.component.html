@@ -1,0 +1,37 @@
+<div class="container">
+    Informacion del usuario
+    <form class="info-user">
+        <div class="row">
+            <div class="row">
+                <div class="col col-md-5 col-lg-5 ">
+                    <label>Nombre:</label>
+                    <input type="text" name="nombre" class="input-nombre" [(ngModel)]="dataUsuario.nombre">
+                </div>
+                <div class="col col-md-3 col-lg-3">
+                    <label>Documento: {{dataUsuario.documento}}</label>
+                </div>
+                <div class="col col-md-4 col-lg-4">
+                    <label>Rol: {{rolUser}}</label>
+                </div>
+            </div>
+            <div class="col ">
+                <label>Apellido:</label>
+                <input type="text" name="apellido" class="input-apellido" [(ngModel)]="dataUsuario.apellido ">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-6">
+                <label>Carrera:</label>
+                <input type="text" name="carrera" class="input-carrera" [(ngModel)]="dataUsuario.carrera">
+            </div>
+            <div class="col col-md-3">
+                <label>Edad:</label>
+                <input type="text" name="edad" class="input-edad" [(ngModel)]="dataUsuario.edad">
+            </div>
+        </div>
+        <div class="col">
+            <button (click)="updateData()" class="btn btn-primary"> Guardar Cambios</button>
+        </div>
+    </form>
+    <!-- {{dataUsuario | json}} -->
+</div>

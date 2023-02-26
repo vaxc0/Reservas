@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     })
   }
   onSelect(event: any) {
-    this.dataForm.rol = this.roles[event.target.value - 1];
+    this.dataForm.rol = this.roles[event.target.value - 1]
   }
   bindData(data: {}) {
     this.dataPortal = data

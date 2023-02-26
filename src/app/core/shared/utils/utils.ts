@@ -7,5 +7,8 @@ import { Injectable } from '@angular/core';
 export class Utils {
     constructor() { }
 
+    SearchByPosicion(id:number,Lista:any){
+        return Lista[id]
+    }
 
 }

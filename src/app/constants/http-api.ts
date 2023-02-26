@@ -6,4 +6,5 @@ export class HttpApi {
     static Bloques = '/bloques/'
     static Facultades = '/facultades/'
     static Tipos = '/tipos/'
+    static Reservas = '/reservas/'
 }

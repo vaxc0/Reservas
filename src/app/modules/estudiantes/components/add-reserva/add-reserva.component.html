@@ -1,0 +1,16 @@
+<p>add-reserva works!</p>
+
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Espacio Fisico</button>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Espacios fisicos</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        aca va la lisat de  espacios fisicos para seleccionar
+
+    </div>
+</ng-template>

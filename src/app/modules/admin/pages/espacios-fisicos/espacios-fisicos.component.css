@@ -1,0 +1,14 @@
+.new-espacioF label{
+    margin: 0 6px;
+    
+}
+.row{
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.input-aforo{
+    width: 50px;
+}
+.input-nombre{
+    width: 80%;
+}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PerfilComponent } from 'src/app/core/shared/components/perfil/perfil.component';
+import { PerfilComponent } from 'src/app/core/components/perfil/perfil.component';
 import { AdminComponent } from './pages/admin.component';
 import { AsignacionManualComponent } from './pages/asignacion-manual/asignacion-manual.component';
 import { EspaciosFisicosComponent } from './pages/espacios-fisicos/espacios-fisicos.component';

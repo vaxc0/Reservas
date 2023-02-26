@@ -1,0 +1,44 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Facultad</th>
+            <th scope="col">Bloque</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Aforo</th>
+            <th scope="col">Reservable</th>
+            <th scope="col">Reservado</th>
+            <th *ngIf="vistaReglas" scope="col">Horas de Uso</th>
+            <th *ngIf="vistaReglas" scope="col">Hrs Nuevo Uso</th>
+            <th *ngIf="vistaReglas" scope="col">Tiempo Espera</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let espacioF of espaciosFisicos" (click)="mensaje(espacioF)">
+            <td>{{ espacioF.facultad }}</td>
+            <td>{{ espacioF.bloque }}</td>
+            <td>{{ espacioF.tipo  }}</td>
+            <td>{{ espacioF.nombre }}</td>
+            <td>{{ espacioF.aforo }}</td>
+            <td>
+                <label *ngIf="espacioF.reservable;else casoCreservable">Si</label>
+                <ng-template #casoCreservable>No</ng-template>
+            </td>
+            <td>
+                <label *ngIf="!espacioF.reservado;else casoCreservado">No</label>
+                <ng-template #casoCreservado>Si</ng-template>
+            </td>
+            <td *ngIf="vistaReglas">{{ espacioF.horas_uso }}</td>
+            <td *ngIf="vistaReglas">{{ espacioF.horas_nueva_reserva }}</td>
+            <td *ngIf="vistaReglas">{{ espacioF.tiempo_espera }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- <td><input type="checkbox" [value]="espacioF.reservado"/> {{ espacioF.reservado }}<label *ngIf="!espacioF.reservado">No</label></td> -->
+
+<!-- <td>
+    <input *ngIf="vistaReglas" type="checkbox" [value]="espacioF.reservado" />
+    <label *ngIf="!espacioF.reservado;else casoCreservado">No</label>
+    <ng-template #casoCreservado>Si</ng-template>
+</td> -->

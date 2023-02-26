@@ -8,9 +8,10 @@
     --naranja-resalto: #ec6e1d;
     /* background blanco por defecto*/
 }
-/* body{
-    background-color:#fff;
-} */
+body{
+    /* background-color:#fff; */
+    height: 100vh;
+}
 .custom-panel{/* css del sidemenu off canvas*/
     background-color: var(--gris-resalto);
 }

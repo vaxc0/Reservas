@@ -1,0 +1,16 @@
+.navbar {
+    background-color: var(--gris-resalto);
+    /* border-radius: 0 0 8px 8px; */
+}
+.navbar .container{
+    color: var(--azul-resalto);
+}
+.navbar .container .nav-item :hover{
+    color: blanchedalmond;
+}
+.container-acord{
+    margin-top: 20px;
+}
+.container-child{
+    margin-top: 20px;
+}

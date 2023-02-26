@@ -23,7 +23,7 @@ import { AuthModule } from "../auth/auth.module";
         AdminRoutingModule,
         SharedModule,
         SideMenuComponent,
-        AuthModule
+        AuthModule,
     ]
 })
 

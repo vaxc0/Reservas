@@ -12,7 +12,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 //ngb
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //services
 import { RolesService } from "../services/roles.service";
 import { UsuariosService } from "../services/usuarios.service";
@@ -21,7 +21,13 @@ import { BloquesService } from "../services/bloque.service";
 import { FacultadesService } from "../services/facultad.service";
 import { TiposService } from "../services/tipo.service";
 import { ListOpcionesComponent } from './components/list-opciones/list-opciones.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilComponent } from '../components/perfil/perfil.component';
+import { ToastComponent } from './components/toast/toast.component';
+import { NgbToast } from "@ng-bootstrap/ng-bootstrap";
+import { ToastService } from "../services/toast.service";
+import { ListaEspaciosfComponent } from './components/lista-espaciosf/lista-espaciosf.component';
+import { ReservasService } from "../services/reservas.service";
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
     imports: [
@@ -31,6 +37,10 @@ import { PerfilComponent } from './components/perfil/perfil.component';
         AccordionModule,
         BsDropdownModule,
         TypeaheadModule,
+        FormsModule,
+        NgbToast,
+        NgbModalModule,
+        ModalModule.forRoot()
     ],
     declarations: [
         NotFoundComponent,
@@ -38,6 +48,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
         DropdownComponent,
         ListOpcionesComponent,
         PerfilComponent,
+        ToastComponent,
+        ListaEspaciosfComponent,
     ],
     exports: [
         HttpClientModule,
@@ -49,10 +61,14 @@ import { PerfilComponent } from './components/perfil/perfil.component';
         AcordeonComponent,
         DropdownComponent,
         ListOpcionesComponent,
+        ListaEspaciosfComponent,
+        ToastComponent,
+        NgbToast,
         NgbModule,
         AccordionModule,
         BsDropdownModule,
         TypeaheadModule,
+        ModalModule
     ],
     providers: [//servicios
         RolesService,
@@ -61,6 +77,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
         BloquesService,
         FacultadesService,
         TiposService,
+        ToastService,
+        ReservasService
     ]
 })
 

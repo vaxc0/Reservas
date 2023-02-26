@@ -1,1 +1,65 @@
-<p>espacios-fisicos works!</p>
+<div class="container">
+    <div class="row"><!-- header opciones -->
+        <accordion [isAnimated]="true">
+            <accordion-group class="acordeon-group" heading="Añadir nuevo Espacio Fisico">
+                <form class="new-espacioF">
+                    <div class="row"><!-- selects -->
+                        <div class="col  ">
+                            <label>Facultad:</label>
+                            <select class="form-select" id="facultad" (change)="onSelectFacultad($event)">
+                                <option value="0">Selecciona Facultad</option>
+                                <option *ngFor="let facultad of facultades" [value]="facultad.nombre">{{facultad.nombre}}
+                                </option>
+                            </select>
+                            <!-- <input type="text" name="nombre" class="input-nombre" [(ngModel)]="newEspacioFisico.nombre"> -->
+                        </div>
+                        <div class="col col-md-3  ">
+                            <label>Bloque: </label>
+                            <select class="form-select" id="bloque" (change)="onSelectBloque($event)">
+                                <option value="0">Selecciona Bloque</option>
+                                <option *ngFor="let bloque of bloques" [value]="bloque.bloque">{{bloque.bloque}}</option>
+                            </select>
+                        </div>
+                        <div class="col col-md-3 ">
+                            <label>Tipo: </label>
+                            <select class="form-select" id="tipo" (change)="onSelectTipo($event)">
+                                <option value="0">Selecciona Tipo</option>
+                                <option *ngFor="let tipo of tipos" [value]="tipo.nombre">{{tipo.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col ">
+                            <label>Nombre:</label>
+                            <input type="text" name="nombre" class="input-nombre"
+                                [(ngModel)]="newEspacioFisico.nombre ">
+                        </div>
+                        <div class="col col-md-2">
+                            <label>Aforo:</label>
+                            <input type="number" name="aforo" [min]="tipoSelected.min" [max]="tipoSelected.max"
+                                class="input-aforo" [(ngModel)]="newEspacioFisico.aforo ">
+                        </div>
+                        <div class="col col-md-2">
+                            <label>Reservable:</label>
+                            <input type="checkbox" name="reservable" class="form-check-input"
+                                [(ngModel)]="newEspacioFisico.reservable ">
+                        </div>
+                        <div class="col col-md-2">
+                            <label>Reservado:</label>
+                            <input type="checkbox" name="reservado" class="form-check-input"
+                                [(ngModel)]="newEspacioFisico.reservado">
+                        </div>
+                    </div>
+                    <div class="col botones"><!-- botones -->
+                        <button (click)="Agregar()" class="btn btn-primary">Agregar</button>
+                        <!-- <button class="btn btn-primary" type="reset">Reset</button> -->
+                    </div>
+                </form>
+            </accordion-group>
+        </accordion>
+    </div>
+    <div class="row"><!-- lista -->
+        <lista-espaciosf [espaciosFisicos]="espaciosFisicos"/>
+    </div>
+  <!--   {{newEspacioFisico | json}} -->
+</div>

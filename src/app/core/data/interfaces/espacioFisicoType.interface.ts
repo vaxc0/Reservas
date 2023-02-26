@@ -1,15 +1,13 @@
-import { Time } from "@angular/common"
 
 export interface EspacioFisicoType {
-    id:number
-    id_facultad:number
-    id_bloque:number
-    id_tipo:number
+    facultad:string
+    bloque:string
+    tipo:string
     nombre: string
-    aforo: string
-    horas_uso:Time
-    horas_nueva_reserva:Time
-    tiempo_espera:Time
+    aforo: number
+    horas_uso?:string
+    horas_nueva_reserva?:string
+    tiempo_espera?:string
     reservable:boolean
     reservado:boolean
 }

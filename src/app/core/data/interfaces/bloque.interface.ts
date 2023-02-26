@@ -1,4 +1,4 @@
 export interface BloqueType {
     id: number;
-    nombre: string;
+    bloque: string;
 }
