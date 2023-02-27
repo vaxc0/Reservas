@@ -7,10 +7,8 @@ import { Usuario } from 'src/app/core/data/models/usuario.model';
 import { EspaciosFisicosService } from 'src/app/core/services/espaciosFisicos.service';
 import { ReservasService } from 'src/app/core/services/reservas.service';
 import { ToastService } from 'src/app/core/services/toast.service';
-import { ListaEspaciosfComponent } from 'src/app/core/shared/components/lista-espaciosf/lista-espaciosf.component';
 import { Utils } from 'src/app/core/shared/utils/utils';
 import { AuthService } from 'src/app/modules/auth/service/auth.service';
-
 
 @Component({
   selector: 'add-reservaComp',
@@ -61,6 +59,17 @@ export class AddReservaComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+  verificarTiempo(){
+    let reverseReservas =this.reservas.reverse()
+    let puedeReservar = true
+     let ultimarerservaEF = reverseReservas.map((reserva)=>{
+      if(reserva.id_espacioFisico == this.espacioFisicoSelected.id) return reserva;
+      else return
+      // console.log(reserva)
+    })
+    console.log(ultimarerservaEF[0])
+    
   }
   receiveData(data: EspacioFisicoType) {
     this.espacioFisicoSelected = data

@@ -20,8 +20,6 @@ export class ListaEspaciosfComponent {
   @Input() tipos: TipoType[] = []
   @Output() dataSend = new EventEmitter<EspacioFisicoType>()
 
-  espacioFSelected!: EspacioFisicoType
-
   constructor() { }
 
   sendDataPadre(data: EspacioFisicoType) {

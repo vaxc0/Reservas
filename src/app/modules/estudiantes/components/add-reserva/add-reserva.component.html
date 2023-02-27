@@ -29,7 +29,7 @@
         </div>
         <div class="col">
             <label>Hora Inicial a Reservar:</label>
-            <input class="input-group date" type="time" name="hora-inicial"  [(ngModel)]="newReserva.hora_reservar" >
+            <input class="input-group date" type="time" name="hora-inicial" ng-model-options="{step: 15}" [(ngModel)]="newReserva.hora_reservar" >
         </div>
         <div class="col">
             <label>Hora final a Reservar:</label>
@@ -42,7 +42,7 @@
     
 </form>
 
-<ng-template #template><!--  modal para sleeccionar espacio fisico -->
+<ng-template #template><!--  modal para seleccionar espacio fisico -->
     <div class="modal-header">
         <h4 class="modal-title pull-left">Espacios fisicos</h4>
         <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -55,3 +55,4 @@
     </div>
 </ng-template>
 <!-- {{newReserva | json}} -->
+<!-- <button (click)="verificarTiempo()" >probando</button> -->
