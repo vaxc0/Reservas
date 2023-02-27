@@ -12,24 +12,41 @@
 <div class="container container-child">
     <div class="row container-fill">
         <div class="col ">
-            <accordion [isAnimated]="true">
+            <accordion [isAnimated]="true"><!-- nueva resreva -->
                 <accordion-group class="acordeon-group" heading="Realizar Reserva">
                     <add-reservaComp />
                 </accordion-group>
             </accordion>
-            <accordion [isAnimated]="true">
-                <accordion-group class="acordeon-group" heading="Consultar Reservas">
+            <accordion [isAnimated]="true"><!-- consultar -->
+                <accordion-group class="acordeon-group" heading="Mis Reservas">
+                    <lista-reservasComp (dataSend)="receiveData($event,template)" [reservas]="reservasUsuario" />
                 </accordion-group>
             </accordion>
-            <accordion [isAnimated]="true">
-                <accordion-group class="acordeon-group" heading="Cancelar Reserva">
+            <accordion [isAnimated]="true"><!-- perfil -->
+                <accordion-group class="acordeon-group" heading="Mis Datos">
+                    <app-perfil />
                 </accordion-group>
             </accordion>
         </div>
-        <div class="col col-md-3 container-acord">
+        <div class="col col-md-3 container-acord"><!-- tips -->
             <a>Tus funciones disponibles:</a>
             <acordeonComp [groups]="textosEstudiante" />
         </div>
+        <!-- <button  (click)="openModal(template)">mostrar modal</button> -->
     </div>
 </div>
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+
+<ng-template #template><!--  modal para eliminar reserva -->
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Reserva Seleccionada</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body"><!-- mostrar salon -->
+        <lista-espaciosf [vistaEstudiante]="true" [espaciosFisicos]="espacionFisicoDeReserva" />
+        <button *ngIf="reservaSelected.activa==1&& reservaSelected.vencida==0" type="button" class="btn btn-danger"
+            (click)="cancelarReserva()">Cancelar Reserva</button>
+    </div>
+</ng-template>

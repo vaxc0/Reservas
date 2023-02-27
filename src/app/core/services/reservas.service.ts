@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpApi } from 'src/app/constants/http-api';
-import { ReservaType } from './../data/interfaces/reservaType.interface';
+import { ReservaType } from '../data/interfaces/ui/reservaType.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -16,13 +16,22 @@ export class ReservasService {
         private http: HttpClient
     ) { }
 
-    getReservas(idU: number): Observable<ReservaType[]> {
+    getReservas(id?: number,filter?:string): Observable<ReservaType[]> {
+        let parametros = {}
+        if(filter == "ByUser"){
+            parametros = {
+                "filterByUser":true,
+                "keyFilter":id
+            }
+        }else if(filter == "ByOper"){
+            parametros = {
+                "filterByOper":true,
+                "keyFilter":id
+            }
+        }
         return this.http.get<ReservaType[]>(`${this.urlBase}${HttpApi.Reservas}`,
             {
-                params: {
-                    "filterByUser":true,
-                    "keyFilter":idU
-                }
+                params: parametros
             })
     }
     getReserva(idR: string): Observable<ReservaType> {

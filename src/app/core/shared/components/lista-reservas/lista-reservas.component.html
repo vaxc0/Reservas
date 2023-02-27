@@ -1,0 +1,54 @@
+<table class="table table-striped">
+    <thead>
+        <tr *ngIf="!vistaEdicion;else headEdicion">
+            <th scope="col">Dia de la Reserva</th>
+            <th scope="col">Hora Inicio Reserva</th>
+            <th scope="col">Hora Fin Reserva</th>
+            <th scope="col">Activa</th>
+            <th scope="col">Vencida</th>
+            <th scope="col">Fecha realizada </th>
+            <th scope="col">Hora realizada</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="!vistaEdicion;else bodyEdicion">
+        <tr *ngFor="let reserva of reservas" (click)="sendDataPadre(reserva)"  class="filaReserva" >
+            <td>{{ reserva.fecha_reservar }}</td>
+            <td>{{ reserva.hora_reservar }}</td>
+            <td>{{ reserva.hora_finalReservar }}</td>
+            <td>
+                <label *ngIf="reserva.activa == 1;else casoCactiva">Si</label>
+                <ng-template #casoCactiva>No</ng-template>
+            </td>
+            <td>
+                <label *ngIf="reserva.vencida == 1;else casoCvencida">Si</label>
+                <ng-template #casoCvencida>No</ng-template>
+            </td>
+            <td>{{ reserva.fecha_realizada}}</td>
+            <td>{{ reserva.hora_realizada}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #headEdicion>
+    <th scope="col">Facultad</th>
+    <th scope="col">Bloque</th>
+    <th scope="col">Tipo</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Aforo</th>
+    <th scope="col">Reservable</th>
+</ng-template>
+<ng-template #bodyEdicion>
+    <!-- <tbody *ngFor="let espacioF of espaciosFisicos">
+        <tr *ngIf="espacioF.reservable" (click)="sendDataPadre(espacioF)" class="filaEsp">
+            <td>{{ espacioF.facultad }}</td>
+            <td>{{ espacioF.bloque }}</td>
+            <td>{{ espacioF.tipo }}</td>
+            <td>{{ espacioF.nombre }}</td>
+            <td>{{ espacioF.aforo }}</td>
+            <td>
+                <label *ngIf="espacioF.reservable == 1;else casoCreservable">Si</label>
+                <ng-template #casoCreservable>No</ng-template>
+            </td>
+        </tr>
+    </tbody> -->
+</ng-template>

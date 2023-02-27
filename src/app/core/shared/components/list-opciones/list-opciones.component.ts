@@ -1,4 +1,5 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { OpcionesType } from 'src/app/core/data/interfaces/ui/opcionesType.interface';
 
 @Component({
   selector: 'list-opcionesComp',
@@ -6,5 +7,5 @@ import { Component,Input } from '@angular/core';
   styleUrls: ['./list-opciones.component.css']
 })
 export class ListOpcionesComponent {
-  @Input() listaOpciones:any[] = []
+  @Input() listaOpciones: OpcionesType[] = []
 }

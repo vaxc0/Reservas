@@ -4,9 +4,7 @@ import { ROLES } from 'src/app/constants/roles-guard';
 import { PerfilComponent } from 'src/app/core/components/perfil/perfil.component';
 import { AuthGuard, RoleGuard } from 'src/app/core/guards';
 import { AdminComponent } from './pages/admin.component';
-import { AsignacionManualComponent } from './pages/asignacion-manual/asignacion-manual.component';
 import { EspaciosFisicosComponent } from './pages/espacios-fisicos/espacios-fisicos.component';
-import { EstablecerReglasComponent } from './pages/establecer-reglas/establecer-reglas.component';
 import { VisualizarReservasComponent } from './pages/visualizar-reservas/visualizar-reservas.component';
 
 const routes: Routes = [
@@ -20,10 +18,9 @@ const routes: Routes = [
                 canActivate:[AuthGuard,RoleGuard],
                 data: { roles: [ROLES.ADMIN,ROLES.OPERARIO] },
                 children: [
-                    {path:'espacios_f',component:EspaciosFisicosComponent},
-                    {path:'reglas',component:EstablecerReglasComponent},
+                    {path:'espacios_f',component:EspaciosFisicosComponent,
+                    canActivate:[RoleGuard],data: { roles: [ROLES.ADMIN] }},
                     {path:'reservas',component:VisualizarReservasComponent},
-                    {path:'asignacion',component:AsignacionManualComponent},
                     {path:'perfil',component:PerfilComponent},
                 ]
             }

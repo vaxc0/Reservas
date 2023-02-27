@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BloqueType } from 'src/app/core/data/interfaces/bloque.interface';
+import { EspacioFisicoType } from 'src/app/core/data/interfaces/espacioFisicoType.interface';
 import { FacultadType } from 'src/app/core/data/interfaces/facultad.inteface';
 import { TipoType } from 'src/app/core/data/interfaces/tipoType.interface';
-import { EspacioFisico } from 'src/app/core/data/models/espacio-fisico.model';
 import { BloquesService } from 'src/app/core/services/bloque.service';
 import { EspaciosFisicosService } from 'src/app/core/services/espaciosFisicos.service';
 import { FacultadesService } from 'src/app/core/services/facultad.service';
 import { TiposService } from 'src/app/core/services/tipo.service';
 import { ToastService } from 'src/app/core/services/toast.service';
-import { ListaEspaciosfComponent } from 'src/app/core/shared/components/lista-espaciosf/lista-espaciosf.component';
 
 @Component({
   selector: 'app-espacios-fisicos',
@@ -16,10 +16,14 @@ import { ListaEspaciosfComponent } from 'src/app/core/shared/components/lista-es
   styleUrls: ['./espacios-fisicos.component.css']
 })
 export class EspaciosFisicosComponent implements OnInit {
-  espaciosFisicos: EspacioFisico[] = []
+  isOpenAcord = false
+  modalRef!: BsModalRef;
+
+  espaciosFisicos: EspacioFisicoType[] = []
   bloques: BloqueType[] = []
   facultades: FacultadType[] = []
   tipos: TipoType[] = []
+  Edit = false
 
   tipoSelected: TipoType = {
     id: 0,
@@ -30,23 +34,41 @@ export class EspaciosFisicosComponent implements OnInit {
   bloqueSelected!: BloqueType
   facultadSelected!: FacultadType
 
-  newEspacioFisico: EspacioFisico = {
+  newEspacioFisico: EspacioFisicoType = {
+    id: 0,
     facultad: '',
     bloque: '',
     tipo: '',
     nombre: '',
     aforo: 0,
-    reservable: false,
-    reservado: false
+    reservable: 1,
+    reservado: 0,
+    horas_uso: '00:00',
+    horas_nueva_reserva: '00:00',
+    tiempo_espera: '00',
   }
+
+  BackEspacioFisico: EspacioFisicoType = {
+    id: 0,
+    facultad: '',
+    bloque: '',
+    tipo: '',
+    nombre: '',
+    aforo: 0,
+    reservable: 1,
+    reservado: 0,
+    horas_uso: '00:00',
+    horas_nueva_reserva: '00:00',
+    tiempo_espera: '00',
+  }
+
 
   constructor(
     private espaciosFisicosService: EspaciosFisicosService,
     private bloquesService: BloquesService,
     private facultadesService: FacultadesService,
     private tiposService: TiposService,
-    private toastServicee:ToastService,
-    private listaEspaciosFisicos:ListaEspaciosfComponent
+    private toastServicee: ToastService
   ) { }
 
   ngOnInit() {
@@ -60,7 +82,6 @@ export class EspaciosFisicosComponent implements OnInit {
     this.tiposService.getTipos().subscribe((data) => {
       this.tipos = data
     })
-    this.sendData()//manda la info a la lista
   }
 
   getEspacios() {
@@ -71,25 +92,56 @@ export class EspaciosFisicosComponent implements OnInit {
   }
   Agregar() {
     this.espaciosFisicosService.addEspacioFisico(this.newEspacioFisico).subscribe((res) => {
-      this.toastServicee.show('Mensaje',res.message)
+      this.toastServicee.show('Mensaje', res.message)
       this.getEspacios()
     })
   }
+  Editar(idEspFis: any) {
+    this.espaciosFisicosService.updateEspacioFisico(this.newEspacioFisico, idEspFis)
+      .subscribe((res) => {
+        this.resetEdit(res)
+      })
+  }
+  Eliminar(idEspFis: any){
+    this.espaciosFisicosService.deleteEspacioFisico(idEspFis).subscribe((res)=>{
+      this.resetEdit(res)
+    })
+  }
+  resetEdit(res:any){
+    this.toastServicee.show('Mensaje', res.message)
+    this.Edit = false
+    this.newEspacioFisico = this.BackEspacioFisico
+    this.getEspacios()
+  }
+
+  //metodos de seleccion de options
   onSelectFacultad(event: any) {
-    // this.facultadSelected = this.facultades[event.target.value - 1]
-    this.newEspacioFisico.facultad = event.target.value 
+    this.newEspacioFisico.facultad = event.target.value
   }
   onSelectBloque(event: any) {
-    // this.bloqueSelected = this.bloques[event.target.value - 1]
-    this.newEspacioFisico.bloque = event.target.value 
+    this.newEspacioFisico.bloque = event.target.value
   }
   onSelectTipo(event: any) {
-    this.tipos.map((tipo)=>{
-      if(event.target.value == tipo.nombre) this.tipoSelected = tipo
+    this.tipos.map((tipo) => {
+      if (event.target.value == tipo.nombre) this.tipoSelected = tipo
     })
-    this.newEspacioFisico.tipo = event.target.value 
+    this.newEspacioFisico.tipo = event.target.value
   }
-  sendData() {//envia informacion a un hijo
-    this.listaEspaciosFisicos.bindData({facultades:this.facultades,bloques:this.bloques,tipos:this.tipos})
+  //metodos para formato de hora
+  getPart(hora: string, parteDeseada: string): any {//horas = H, minutos = M
+    let [horas, minutos] = hora.split(':')
+    if (parteDeseada == 'H') return horas
+    else if (parteDeseada == 'M') return minutos
   }
+  getTiempoespera(event: any) {
+    let hora = event.target.value
+    this.newEspacioFisico.tiempo_espera = this.getPart(hora, 'M')
+  }
+  //metodo para recibir data de la tabla
+  receiveData(data: EspacioFisicoType) {//recibe la data de la tabla
+    this.Edit = true
+    this.newEspacioFisico = data
+    console.log(this.newEspacioFisico)
+  }
+
 }

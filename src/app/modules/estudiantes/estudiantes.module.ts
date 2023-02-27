@@ -13,10 +13,11 @@ import { AddReservaComponent } from './components/add-reserva/add-reserva.compon
     ],
     declarations:[
     EstudiantesComponent,
-    AddReservaComponent
+    AddReservaComponent,
   ],
     exports:[],
-    providers:[]
+    providers:[
+    ]
 })
 
 export class EstudiantesModule{

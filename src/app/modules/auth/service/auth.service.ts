@@ -59,15 +59,18 @@ export class AuthService implements OnInit {
         if (current != null) this.auxCurrent = JSON.parse(current)
         return this.auxCurrent
     }
-    // public isAdmin(): boolean {
-    //     return this.hasRol(1)
-    // }
-    // public isOpeario(): boolean {
-    //     return this.hasRol(2)
-    // }
-    // public isEstudiante(): boolean {
-    //     return this.hasRol(3)
-    // }
+    /* public isAdmin(): boolean {
+        return this.hasRol([ROLES.ADMIN])
+    }
+    public isOpeario(): boolean {
+        return this.hasRol([ROLES.OPERARIO])
+    }
+    public isEstudiante(): boolean {
+        return this.hasRol([ROLES.STUDENT])
+    } */
+    public getRolUser(){
+        return this.getCurrentUser().id_rol
+    }
     public hasRol(roles: ROLES[]): boolean {
         let tieneRol = false
         try {

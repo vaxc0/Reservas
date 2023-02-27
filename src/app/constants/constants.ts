@@ -8,25 +8,19 @@ export class Constants {
     static opcionesAdministracion: OpcionesType[] = [
         {
             nombre: "Espacios Físicos",
-            ruta: `${this.urlbaseOA}espacios_f`,
-            ids_rol_activa: [1]
-        },
-        {
-            nombre: "Establecer Reglas",
-            ruta: `${this.urlbaseOA}reglas`,
-            ids_rol_activa: [1]
+            ruta: `${this.urlbaseOA}espacios_f`
         },
         {
             nombre: "Visualizar Reservas",
-            ruta: `${this.urlbaseOA}reservas`,
-            ids_rol_activa: [1, 2]
-        },
-        {
-            nombre: "Asignación Manual",
-            ruta: `${this.urlbaseOA}asignacion`,
-            ids_rol_activa: [1, 2]
-        },
+            ruta: `${this.urlbaseOA}reservas`
+        }
     ]//admin 1, operario 2
+    static opcionesOperario: OpcionesType[] = [
+        {
+            nombre: "Visualizar Reservas",
+            ruta: `${this.urlbaseOA}reservas`
+        }
+    ]
     static rutasNavAdmin: OpcionesType[] = [
 
     ]
@@ -38,8 +32,7 @@ export class Constants {
     static dropdown: OpcionesType[] = [
         {
             nombre: "Perfil",
-            ruta: `${this.urlbaseOA}perfil`,
-            ids_rol_activa: [1, 2, 3]
+            ruta: `${this.urlbaseOA}perfil`
         }
     ]
     //Textos Acordeones
@@ -49,8 +42,8 @@ export class Constants {
             content: ['Agregar Espacios', 'Manejar Espacios']
         },
         {
-            title: 'Reservar',
-            content: ['Reservar el espacio fisico', 'Cancelar tus reservas']
+            title: 'Reservas',
+            content: ['Visualizar las Reservas', 'Reasignar Reservas']
         }
     ]
     static textosEstudiante: AcordeonType[] = [
@@ -72,5 +65,5 @@ export class Constants {
             content: ['Reservar el espacio fisico', 'Cancelar tus reservas']
         }
     ]
-    
+
 }

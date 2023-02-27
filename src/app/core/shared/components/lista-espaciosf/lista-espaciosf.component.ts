@@ -1,8 +1,8 @@
-import { Component, Injectable, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, Output } from '@angular/core';
 import { BloqueType } from 'src/app/core/data/interfaces/bloque.interface';
+import { EspacioFisicoType } from 'src/app/core/data/interfaces/espacioFisicoType.interface';
 import { FacultadType } from 'src/app/core/data/interfaces/facultad.inteface';
 import { TipoType } from 'src/app/core/data/interfaces/tipoType.interface';
-import { EspacioFisico } from 'src/app/core/data/models/espacio-fisico.model';
 
 @Component({
   selector: 'lista-espaciosf',
@@ -13,29 +13,18 @@ import { EspacioFisico } from 'src/app/core/data/models/espacio-fisico.model';
   providedIn: 'root'
 })
 export class ListaEspaciosfComponent {
-  @Input() vistaReglas: boolean = false
-  @Input() espaciosFisicos: EspacioFisico[] = []
-  @Output()
+  @Input() vistaEstudiante: boolean = false
+  @Input() espaciosFisicos: EspacioFisicoType[] = []
+  @Input() facultades: FacultadType[] = []
+  @Input() bloques: BloqueType[] = []
+  @Input() tipos: TipoType[] = []
+  @Output() dataSend = new EventEmitter<EspacioFisicoType>()
 
-  bloques: BloqueType[] = []
-  facultades: FacultadType[] = []
-  tipos: TipoType[] = []
-  espacioFSelected!: EspacioFisico
+  espacioFSelected!: EspacioFisicoType
 
   constructor() { }
-  bindData(data: { bloques: BloqueType[], facultades: FacultadType[], tipos: TipoType[] }) {
-    this.bloques = data.bloques
-    this.facultades = data.facultades
-    this.tipos = data.tipos
-  }
-  mensaje(fila: any) {
-    console.log("fila presionada", fila)
-  }
-  BuscarTipo(idTipo: any) {
-    let Tipo!:TipoType
-    this.tipos.map((tipo) => {
-      if (idTipo == tipo.id) Tipo = tipo
-    })
-    return Tipo.nombre
+
+  sendDataPadre(data: EspacioFisicoType) {
+    this.dataSend.emit(data)
   }
 }

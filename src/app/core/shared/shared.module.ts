@@ -29,6 +29,7 @@ import { ListaEspaciosfComponent } from './components/lista-espaciosf/lista-espa
 import { ReservasService } from "../services/reservas.service";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AuthGuard, RoleGuard } from "../guards";
+import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
 
 @NgModule({
     imports: [
@@ -51,6 +52,7 @@ import { AuthGuard, RoleGuard } from "../guards";
         PerfilComponent,
         ToastComponent,
         ListaEspaciosfComponent,
+        ListaReservasComponent,
     ],
     exports: [
         HttpClientModule,
@@ -61,8 +63,10 @@ import { AuthGuard, RoleGuard } from "../guards";
         NotFoundComponent,
         AcordeonComponent,
         DropdownComponent,
+        PerfilComponent,
         ListOpcionesComponent,
         ListaEspaciosfComponent,
+        ListaReservasComponent,
         ToastComponent,
         NgbToast,
         NgbModule,

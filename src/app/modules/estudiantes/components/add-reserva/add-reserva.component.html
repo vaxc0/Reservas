@@ -1,16 +1,57 @@
-<p>add-reserva works!</p>
+<form class="new-reserva">
+    <div class="col">
+        <button type="button" class="btn btn-primary" (click)="openModal(template)">Seleccionar Espacio Fisico</button>
+    </div>
+    <div class="row" *ngIf="espacioFisicoSelected"  >
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Facultad</th>
+                    <th scope="col">Bloque</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Aforo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>{{ espacioFisicoSelected.facultad }}</td>
+                <td>{{ espacioFisicoSelected.bloque }}</td>
+                <td>{{ espacioFisicoSelected.tipo }}</td>
+                <td>{{ espacioFisicoSelected.nombre }}</td>
+                <td>{{ espacioFisicoSelected.aforo }}</td>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" *ngIf="espacioFisicoSelected">
+        <div class="col">
+            <label>Fecha a Resevar:</label>
+            <input class="" type="date" name="hora-reserva"  [(ngModel)]="newReserva.fecha_reservar" >
+        </div>
+        <div class="col">
+            <label>Hora Inicial a Reservar:</label>
+            <input class="input-group date" type="time" name="hora-inicial"  [(ngModel)]="newReserva.hora_reservar" >
+        </div>
+        <div class="col">
+            <label>Hora final a Reservar:</label>
+            <input class="input-group date" type="time" name="hora-final"  [(ngModel)]="newReserva.hora_finalReservar" >
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-secondary" (click)="Reservar(espacioFisicoSelected.id)">Reservar Espacio Fisico</button>
+        </div>
+    </div>
+    
+</form>
 
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Espacio Fisico</button>
-
-<ng-template #template>
+<ng-template #template><!--  modal para sleeccionar espacio fisico -->
     <div class="modal-header">
         <h4 class="modal-title pull-left">Espacios fisicos</h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true" class="visually-hidden">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        aca va la lisat de  espacios fisicos para seleccionar
-
+        <lista-espaciosf [vistaEstudiante]="true" (dataSend)="receiveData($event)" [espaciosFisicos]="espaciosFisicos" />
+        <!-- <button type="button" class="btn btn-primary" (click)="seleccionarEspacioF()">Seleccionar</button> -->
     </div>
 </ng-template>
+<!-- {{newReserva | json}} -->

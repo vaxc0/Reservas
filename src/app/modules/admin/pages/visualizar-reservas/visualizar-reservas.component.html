@@ -1,1 +1,43 @@
-<p>visualizar-reservas works!</p>
+<div class="container container-child">
+    <div class="row container-fill">
+        <div class="col ">
+            <accordion [isAnimated]="true"><!-- nueva resreva -->
+                <accordion-group class="acordeon-group" heading="Ver Reservas Totales">
+                    <lista-reservasComp (dataSend)="receiveData($event,templateDetails)" [reservas]="reservasTotales" />
+                </accordion-group>
+            </accordion>
+            <accordion [isAnimated]="true"><!-- consultar -->
+                <accordion-group class="acordeon-group" heading="Reasignar Reservas">
+                    <lista-reservasComp (dataSend)="receiveData($event,template)"  [reservas]="reservasByOperario" />
+                </accordion-group>
+            </accordion>
+        </div>
+    </div>
+</div>
+
+<ng-template #templateDetails><!--  modal para ver EspacioFisico de ReservaTotal -->
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Espacio Fisico de la Reserva</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body"><!-- mostrar espacio fisico -->
+        <lista-espaciosf [vistaEstudiante]="true" [espaciosFisicos]="espacioFisicoSelected" />
+    </div>
+</ng-template>
+
+<ng-template #template><!--  modal para reasignar reserva -->
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Reasignar Reserva </h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        cuerpo del modal
+        <!-- <lista-espaciosf [vistaEstudiante]="true" [espaciosFisicos]="espacionFisicoDeReserva" /> -->
+        <!-- <button *ngIf="reservaSelected.activa==1&& reservaSelected.vencida==0" type="button" class="btn btn-danger"
+            (click)="cancelarReserva()">Cancelar Reserva</button> -->
+    </div>
+</ng-template>
