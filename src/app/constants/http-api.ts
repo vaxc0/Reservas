@@ -7,4 +7,5 @@ export class HttpApi {
     static Facultades = '/facultades/'
     static Tipos = '/tipos/'
     static Reservas = '/reservas/'
+    static Reglas = '/reglas/'
 }

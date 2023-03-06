@@ -13,7 +13,6 @@
                                     {{facultad.nombre}}
                                 </option>
                             </select>
-                            <!-- <input type="text" name="nombre" class="input-nombre" [(ngModel)]="newEspacioFisico.nombre"> -->
                         </div>
                         <div class="col col-md-3  ">
                             <label>Bloque: </label>
@@ -53,39 +52,17 @@
                                 [(ngModel)]="newEspacioFisico.reservado">
                         </div>
                     </div>
-                    <div class="row"><!-- reglas -->
-                        <div class="col">
-                            <label>Tiempo de Uso: {{newEspacioFisico.horas_uso}} Horas/Minutos</label>
-                            <input class="input-group time" type="time" name="horas-uso"
-                                [(ngModel)]="newEspacioFisico.horas_uso">
-                        </div>
-                        <div class="col">
-                            <label>Tiempo Hasta nueva reserva: {{newEspacioFisico.horas_nueva_reserva}}
-                                Horas/Minutos</label>
-                            <input class="input-group time" type="time" name="horas-nueva-reserva"
-                                [(ngModel)]="newEspacioFisico.horas_nueva_reserva">
-                            <label></label>
-                        </div>
-                        <div class="col">
-                            <label>Tiempo de espera del estudiante: {{newEspacioFisico.tiempo_espera}} Minutos</label>
-                            <input class="input-group time" type="time" name="tiempo-espera"
-                                (input)="getTiempoespera($event)" [(ngModel)]="newEspacioFisico.tiempo_espera">
-                        </div>
-                    </div>
-
                     <div class="col botones"><!-- botones -->
                         <button (click)="Agregar()" class="btn btn-primary">Agregar</button>
-                        <!-- <button class="btn btn-primary" type="reset">Reset</button> -->
                     </div>
                 </form>
             </accordion-group>
         </accordion>
     </div>
-    <div class="row"><!-- lista -->
-        <lista-espaciosf (dataSend)="receiveData($event)" [espaciosFisicos]="espaciosFisicos" [bloques]="bloques"
-            [facultades]="facultades" [tipos]="tipos" />
+    <div class="row"><!-- lista espacios fisicos -->
+        <lista-espaciosf (dataSend)="receiveData($event)" [espaciosFisicos]="espaciosFisicos" />
     </div>
-    <!--   {{newEspacioFisico | json}} -->
+      <!-- {{newEspacioFisico | json}} -->
 </div>
 
 <ng-template #EditFom><!-- vista edicion -->
@@ -120,7 +97,7 @@
                     [(ngModel)]="newEspacioFisico.reservado">
             </div>
         </div>
-        <div class="row"><!-- reglas -->
+        <!-- <div class="row"> REGLAS
             <div class="col">
                 <label>Tiempo de Uso: {{newEspacioFisico.horas_uso}} Horas/Minutos</label>
                 <input class="input-group time" type="time" name="horas-uso" [(ngModel)]="newEspacioFisico.horas_uso">
@@ -137,7 +114,7 @@
                 <input class="input-group time" type="time" name="tiempo-espera" (input)="getTiempoespera($event)"
                     [(ngModel)]="newEspacioFisico.tiempo_espera">
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col col-md-3"><!-- botones -->
                 <button (click)="Editar(newEspacioFisico.id)" class="btn btn-primary">Guardar Cambios</button>

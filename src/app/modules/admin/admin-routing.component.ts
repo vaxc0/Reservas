@@ -5,6 +5,7 @@ import { PerfilComponent } from 'src/app/core/components/perfil/perfil.component
 import { AuthGuard, RoleGuard } from 'src/app/core/guards';
 import { AdminComponent } from './pages/admin.component';
 import { EspaciosFisicosComponent } from './pages/espacios-fisicos/espacios-fisicos.component';
+import { GestionReglasComponent } from './pages/gestion-reglas/gestion-reglas.component';
 import { VisualizarReservasComponent } from './pages/visualizar-reservas/visualizar-reservas.component';
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
                 children: [
                     {path:'espacios_f',component:EspaciosFisicosComponent,
                     canActivate:[RoleGuard],data: { roles: [ROLES.ADMIN] }},
+                    {path:'reglas',component:GestionReglasComponent},
                     {path:'reservas',component:VisualizarReservasComponent},
                     {path:'perfil',component:PerfilComponent},
                 ]

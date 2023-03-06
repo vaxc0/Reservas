@@ -9,9 +9,6 @@
             <th scope="col">Aforo</th>
             <th scope="col">Reservable</th>
             <th scope="col">Reservado</th>
-            <th scope="col">Horas de Uso</th>
-            <th scope="col">Hrs Nuevo Uso</th>
-            <th scope="col">Tiempo Espera</th>
         </tr>
     </thead>
     <tbody *ngIf="!vistaEstudiante;else bodyEstudiante">
@@ -30,9 +27,6 @@
                 <label *ngIf="!espacioF.reservado;else casoCreservado">No</label>
                 <ng-template #casoCreservado>Si</ng-template>
             </td>
-            <td>{{ espacioF.horas_uso }}</td>
-            <td>{{ espacioF.horas_nueva_reserva }}</td>
-            <td>{{ espacioF.tiempo_espera }}</td>
         </tr>
     </tbody>
 </table>

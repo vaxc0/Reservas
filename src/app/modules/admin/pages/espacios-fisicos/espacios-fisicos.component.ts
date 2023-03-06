@@ -4,10 +4,10 @@ import { BloqueType } from 'src/app/core/data/interfaces/bloque.interface';
 import { EspacioFisicoType } from 'src/app/core/data/interfaces/espacioFisicoType.interface';
 import { FacultadType } from 'src/app/core/data/interfaces/facultad.inteface';
 import { TipoType } from 'src/app/core/data/interfaces/tipoType.interface';
-import { BloquesService } from 'src/app/core/services/bloque.service';
+import { BloquesService } from 'src/app/core/services/bloques.service';
 import { EspaciosFisicosService } from 'src/app/core/services/espaciosFisicos.service';
-import { FacultadesService } from 'src/app/core/services/facultad.service';
-import { TiposService } from 'src/app/core/services/tipo.service';
+import { FacultadesService } from 'src/app/core/services/facultades.service';
+import { TiposService } from 'src/app/core/services/tipos.service';
 import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
@@ -42,10 +42,7 @@ export class EspaciosFisicosComponent implements OnInit {
     nombre: '',
     aforo: 0,
     reservable: 1,
-    reservado: 0,
-    horas_uso: '00:00',
-    horas_nueva_reserva: '00:00',
-    tiempo_espera: '00',
+    reservado: 0
   }
 
   BackEspacioFisico: EspacioFisicoType = {
@@ -56,10 +53,7 @@ export class EspaciosFisicosComponent implements OnInit {
     nombre: '',
     aforo: 0,
     reservable: 1,
-    reservado: 0,
-    horas_uso: '00:00',
-    horas_nueva_reserva: '00:00',
-    tiempo_espera: '00',
+    reservado: 0
   }
 
 
@@ -126,16 +120,6 @@ export class EspaciosFisicosComponent implements OnInit {
       if (event.target.value == tipo.nombre) this.tipoSelected = tipo
     })
     this.newEspacioFisico.tipo = event.target.value
-  }
-  //metodos para formato de hora
-  getPart(hora: string, parteDeseada: string): any {//horas = H, minutos = M
-    let [horas, minutos] = hora.split(':')
-    if (parteDeseada == 'H') return horas
-    else if (parteDeseada == 'M') return minutos
-  }
-  getTiempoespera(event: any) {
-    let hora = event.target.value
-    this.newEspacioFisico.tiempo_espera = this.getPart(hora, 'M')
   }
   //metodo para recibir data de la tabla
   receiveData(data: EspacioFisicoType) {//recibe la data de la tabla

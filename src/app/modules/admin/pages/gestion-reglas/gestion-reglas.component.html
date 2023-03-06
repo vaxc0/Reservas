@@ -1,0 +1,80 @@
+<div class="container">
+    <accordion [isAnimated]="true">
+        <accordion-group class="acordeon-group" heading="Añadir nueva regla">
+            <div class="row"><!--crear reglas -->
+                <div class="col">
+                    <label>Tiempo de Uso: {{newRegla.horas_uso}} Horas</label>
+                    <input class="input-group time" type="time" name="horas-uso" [(ngModel)]="newRegla.horas_uso">
+                </div>
+                <div class="col">
+                    <label>Tiempo Hasta nueva reserva: {{newRegla.horas_nueva_reserva}}
+                        Horas</label>
+                    <input class="input-group time" type="time" name="horas-nueva-reserva"
+                        [(ngModel)]="newRegla.horas_nueva_reserva">
+                    <label></label>
+                </div>
+                <div class="col">
+                    <label>Tiempo de espera del estudiante: {{newRegla.tiempo_espera}} Minutos</label>
+                    <input class="input-group time" type="time" name="tiempo-espera" (input)="getTiempoespera($event)"
+                        [(ngModel)]="newRegla.tiempo_espera">
+                </div>
+                <div class="col">
+                    <button (click)="AgregarRegla()" class="btn btn-primary">Crear Regla</button>
+                </div>
+            </div>
+            <div class="row"><!-- lista reglas -->
+                <lista-reglasComp (dataSend)="receiveDataReglaxEspF($event,templateEspFxRegla)" [Reglas]="Reglas" />
+            </div>
+        </accordion-group>
+        <accordion-group class="acordeon-group" heading="Asignar regla">
+            <div class="col">
+                <button (click)="openModal(templateReglas)" class="btn btn-primary">Seleccionar Regla</button>
+            </div>
+            <div class="row" *ngIf="reglaSelected">
+                <lista-reglasComp [Reglas]="reglaSelected" />
+            </div>
+            <div class="col">
+                <button (click)="openModal(templateEspF)" class="btn btn-primary">Seleccionar Espacio Fisico</button>
+            </div>
+            <div class="row" *ngIf="reglaSelected">
+                <lista-espaciosf [espaciosFisicos]="espacioFSelected" />
+            </div>
+            <div class="col" *ngIf="reglaSelected.length!=0&&espacioFSelected.length!=0">
+                <button (click)="AsignarRegla()" class="btn btn-primary">Asignar</button>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>
+<ng-template #templateReglas><!--  modal para seleccionar regla -->
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Reglas Disponibles</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <lista-reglasComp (dataSend)="receiveDataRegla($event)" [Reglas]="Reglas" />
+    </div>
+</ng-template>
+<ng-template #templateEspF><!--  modal para seleccionar espacios fisicos-->
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Espacios Fisicos Disponibles</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <lista-espaciosf (dataSend)="receiveDataEspF($event)" [espaciosFisicos]="EspaciosFisicos" />
+    </div>
+</ng-template>
+<ng-template #templateEspFxRegla><!--  modal para mostrar espacios fisicos por regla-->
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Espacios Fisicos Relacionados</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <lista-espaciosf [espaciosFisicos]="espaciosFxRegla" />
+    </div>
+</ng-template>

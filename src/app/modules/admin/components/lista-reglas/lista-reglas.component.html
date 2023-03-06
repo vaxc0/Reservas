@@ -1,0 +1,18 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Horas de Uso</th>
+            <th scope="col">Hrs Nuevo Uso</th>
+            <th scope="col">Tiempo Espera</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let regla of Reglas" (click)="sendDataPadre(regla)" class="filaRegla">
+            <th scope="col">{{ regla.id }}</th>
+            <td>{{ regla.horas_uso }}</td>
+            <td>{{ regla.horas_nueva_reserva }}</td>
+            <td>{{ regla.tiempo_espera }}</td>
+        </tr>
+    </tbody>
+</table>

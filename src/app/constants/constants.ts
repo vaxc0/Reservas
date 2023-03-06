@@ -11,6 +11,10 @@ export class Constants {
             ruta: `${this.urlbaseOA}espacios_f`
         },
         {
+            nombre: "Gestionar Reglas",
+            ruta: `${this.urlbaseOA}reglas`
+        },
+        {
             nombre: "Visualizar Reservas",
             ruta: `${this.urlbaseOA}reservas`
         }

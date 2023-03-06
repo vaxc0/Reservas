@@ -16,8 +16,15 @@ export class EspaciosFisicosService {
         private http: HttpClient
     ) { }
 
-    getEspaciosFisicos(): Observable<EspacioFisicoType[]> {
-        return this.http.get<EspacioFisicoType[]>(`${this.urlBase}${HttpApi.Esp_fisicos}`)
+    getEspaciosFisicos(filter?: String, keyFilter?: any): Observable<EspacioFisicoType[]> {
+        let parametros = {}
+        if (filter == 'ByRegla') {
+            parametros = { "filterByRegla": keyFilter }
+        }
+        return this.http.get<EspacioFisicoType[]>(`${this.urlBase}${HttpApi.Esp_fisicos}`,
+            {
+                params: parametros
+            })
     }
     getEspacioFisico(idEf: string): Observable<EspacioFisicoType> {
         return this.http.get<EspacioFisicoType>(`${this.urlBase}${HttpApi.Esp_fisicos}${idEf}`)

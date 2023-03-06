@@ -17,9 +17,9 @@ import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RolesService } from "../services/roles.service";
 import { UsuariosService } from "../services/usuarios.service";
 import { EspaciosFisicosService } from "../services/espaciosFisicos.service";
-import { BloquesService } from "../services/bloque.service";
-import { FacultadesService } from "../services/facultad.service";
-import { TiposService } from "../services/tipo.service";
+import { BloquesService } from "../services/bloques.service";
+import { FacultadesService } from "../services/facultades.service";
+import { TiposService } from "../services/tipos.service";
 import { ListOpcionesComponent } from './components/list-opciones/list-opciones.component';
 import { PerfilComponent } from '../components/perfil/perfil.component';
 import { ToastComponent } from './components/toast/toast.component';
@@ -30,6 +30,7 @@ import { ReservasService } from "../services/reservas.service";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AuthGuard, RoleGuard } from "../guards";
 import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
+import { ReglasService } from "../services/reglas.service";
 
 @NgModule({
     imports: [
@@ -84,6 +85,7 @@ import { ListaReservasComponent } from './components/lista-reservas/lista-reserv
         TiposService,
         ToastService,
         ReservasService,
+        ReglasService,
         AuthGuard,
         RoleGuard
     ]
