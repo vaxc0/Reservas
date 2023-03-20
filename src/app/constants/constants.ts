@@ -3,6 +3,10 @@ import { OpcionesType } from "../core/data/interfaces/ui/opcionesType.interface"
 
 
 export class Constants {
+    static meridianos: any = [
+        { meridiano: 'Am' },
+        { meridiano: 'Pm' }
+    ]
     //opciones Administador-Operario
     static urlbaseOA = '/galileo/dashboard/'
     static opcionesAdministracion: OpcionesType[] = [

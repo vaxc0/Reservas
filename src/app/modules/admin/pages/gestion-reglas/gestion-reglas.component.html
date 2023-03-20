@@ -1,27 +1,29 @@
 <div class="container">
     <accordion [isAnimated]="true">
         <accordion-group class="acordeon-group" heading="Añadir nueva regla">
-            <div class="row"><!--crear reglas -->
-                <div class="col">
-                    <label>Tiempo de Uso: {{newRegla.horas_uso}} Horas</label>
-                    <input class="input-group time" type="time" name="horas-uso" [(ngModel)]="newRegla.horas_uso">
+            <form (change)="comprobar()">
+                <div class="row"><!--crear reglas -->
+                    <div class="col">
+                        <label>Tiempo de Uso: {{newRegla.horas_uso}} Horas</label>
+                        <input class="input-group time" type="number" name="horas-uso" min="1" max="3"
+                            [(ngModel)]="newRegla.horas_uso" />
+                    </div>
+                    <div class="col">
+                        <label>Tiempo Hasta nueva reserva: {{newRegla.horas_nueva_reserva}}
+                            Horas</label>
+                        <input class="input-group time" type="number" name="horas-nueva-reserva" min="1" max="12"
+                            [(ngModel)]="newRegla.horas_nueva_reserva" />
+                    </div>
+                    <div class="col">
+                        <label>Tiempo de espera del estudiante: {{newRegla.tiempo_espera}} Minutos</label>
+                        <input class="input-group time" type="number" name="tiempo-espera" min="10" max="40"
+                            [(ngModel)]="newRegla.tiempo_espera" />
+                    </div>
+                    <div class="col" *ngIf="!newRegla.camposVacios">
+                        <button (click)="AgregarRegla()" class="btn btn-primary">Crear Regla</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <label>Tiempo Hasta nueva reserva: {{newRegla.horas_nueva_reserva}}
-                        Horas</label>
-                    <input class="input-group time" type="time" name="horas-nueva-reserva"
-                        [(ngModel)]="newRegla.horas_nueva_reserva">
-                    <label></label>
-                </div>
-                <div class="col">
-                    <label>Tiempo de espera del estudiante: {{newRegla.tiempo_espera}} Minutos</label>
-                    <input class="input-group time" type="time" name="tiempo-espera" (input)="getTiempoespera($event)"
-                        [(ngModel)]="newRegla.tiempo_espera">
-                </div>
-                <div class="col">
-                    <button (click)="AgregarRegla()" class="btn btn-primary">Crear Regla</button>
-                </div>
-            </div>
+            </form>
             <div class="row"><!-- lista reglas -->
                 <lista-reglasComp (dataSend)="receiveDataReglaxEspF($event,templateEspFxRegla)" [Reglas]="Reglas" />
             </div>
@@ -45,6 +47,7 @@
         </accordion-group>
     </accordion>
 </div>
+<!-- {{newRegla | json}} -->
 <ng-template #templateReglas><!--  modal para seleccionar regla -->
     <div class="modal-header">
         <h4 class="modal-title pull-left">Reglas Disponibles</h4>

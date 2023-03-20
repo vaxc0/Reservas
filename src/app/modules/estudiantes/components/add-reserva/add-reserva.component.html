@@ -2,7 +2,7 @@
     <div class="col">
         <button type="button" class="btn btn-primary" (click)="openModal(template)">Seleccionar Espacio Fisico</button>
     </div>
-    <div class="row" *ngIf="espacioFisicoSelected"  >
+    <div class="row" *ngIf="espacioFisicoSelected">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -25,23 +25,29 @@
     <div class="row" *ngIf="espacioFisicoSelected">
         <div class="col">
             <label>Fecha a Resevar:</label>
-            <input class="" type="date" name="hora-reserva"  [(ngModel)]="newReserva.fecha_reservar" >
+            <input class="form-control" type="text" name="hora-reserva" placeholder="Fecha Reserva" [minDate]="minDate"
+                [daysDisabled]="[6,0]" [(ngModel)]="fechaSelected" [bsConfig]="{isAnimated:true}"
+                bsDatepicker>
         </div>
         <div class="col">
             <label>Hora Inicial a Reservar:</label>
-            <input class="input-group date" type="time" name="hora-inicial" ng-model-options="{step: 15}" [(ngModel)]="newReserva.hora_reservar" >
+            <timepicker class="form-group date" name="hora-inicial" [minuteStep]="30" (isValid)="isValid($event)"
+                (click)="calcularHoraFin()" [min]="minTime" [max]="maxTime" [(ngModel)]="newReserva.hora_reservar" formC>
+            </timepicker>
         </div>
         <div class="col">
             <label>Hora final a Reservar:</label>
-            <input class="input-group date" type="time" name="hora-final"  [(ngModel)]="newReserva.hora_finalReservar" >
+            <timepicker class="input-group date" name="hora-final" [readonlyInput]="true" [showSpinners]="false"
+                [(ngModel)]="newReserva.hora_finalReservar">
+            </timepicker>
         </div>
         <div class="col">
-            <button type="button" class="btn btn-secondary" (click)="Reservar(espacioFisicoSelected.id)">Reservar Espacio Fisico</button>
+            <button type="button" class="btn btn-secondary" [disabled]="!fechaSelected" (click)="Reservar(espacioFisicoSelected.id)">Reservar
+                Espacio Fisico</button>
+                <button type="button" class="btn btn-secondary" (click)="puedeReservar()">prueba</button>
         </div>
     </div>
-    
 </form>
-
 <ng-template #template><!--  modal para seleccionar espacio fisico -->
     <div class="modal-header">
         <h4 class="modal-title pull-left">Espacios fisicos</h4>
@@ -50,9 +56,8 @@
         </button>
     </div>
     <div class="modal-body">
-        <lista-espaciosf [vistaEstudiante]="true" (dataSend)="receiveData($event)" [espaciosFisicos]="espaciosFisicos" />
-        <!-- <button type="button" class="btn btn-primary" (click)="seleccionarEspacioF()">Seleccionar</button> -->
+        <lista-espaciosf [vistaEstudiante]="true" (dataSend)="receiveData($event)"
+            [espaciosFisicos]="espaciosFisicos" />
     </div>
 </ng-template>
 <!-- {{newReserva | json}} -->
-<!-- <button (click)="verificarTiempo()" >probando</button> -->

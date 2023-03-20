@@ -15,9 +15,10 @@ export class GestionReglasComponent implements OnInit {
   modalRef!: BsModalRef;
 
   newRegla: ReglaType = {
-    horas_uso: '00:00',
-    horas_nueva_reserva: '00:00',
-    tiempo_espera: '00:00'
+    horas_uso: 0,
+    horas_nueva_reserva: 0,
+    tiempo_espera: 0,
+    camposVacios: true
   }
   Reglas: ReglaType[] = []
   reglaSelected: ReglaType[] = []
@@ -52,19 +53,16 @@ export class GestionReglasComponent implements OnInit {
         this.toastService.show('Mensaje', res.message)
       })
   }
+  comprobar() {
+    if (
+      this.newRegla.horas_uso != 0 &&
+      this.newRegla.horas_nueva_reserva != 0 &&
+      this.newRegla.tiempo_espera != 0
+    ) this.newRegla.camposVacios = false
+  }
   //modales
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
-  }
-  //metodos para formato de hora
-  getPart(hora: string, parteDeseada: string): any {//horas = H, minutos = M
-    let [horas, minutos] = hora.split(':')
-    if (parteDeseada == 'H') return horas
-    else if (parteDeseada == 'M') return minutos
-  }
-  getTiempoespera(event: any) {
-    let hora = event.target.value
-    this.newRegla.tiempo_espera = this.getPart(hora, 'M')
   }
   //recibir data
   receiveDataRegla(data: ReglaType) {//recibe la data de la tabla
@@ -81,13 +79,13 @@ export class GestionReglasComponent implements OnInit {
     console.log(this.espacioFSelected)
     this.modalRef?.hide()
   }
-  receiveDataReglaxEspF(data: ReglaType,template: TemplateRef<any>){
+  receiveDataReglaxEspF(data: ReglaType, template: TemplateRef<any>) {
     this.openModal(template)
     this.toastService.show('Mensaje', 'Espacios Fisicos relacionados a la Regla')
-    this.espaciosFisicosService.getEspaciosFisicos('ByRegla',data.id)
-    .subscribe((data)=>{
-      this.espaciosFxRegla = data
-      // console.log(this.espaciosFxRegla)
-    })
+    this.espaciosFisicosService.getEspaciosFisicos('ByRegla', data.id)
+      .subscribe((data) => {
+        this.espaciosFxRegla = data
+        // console.log(this.espaciosFxRegla)
+      })
   }
 }

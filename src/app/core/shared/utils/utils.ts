@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { ReservaType } from '../../data/interfaces/ui/reservaType.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -14,33 +15,28 @@ export class Utils {
         return Lista[id]
     }
     getCurrentDate() {
-        return this.fechaActual.toLocaleDateString()
+        return this.fechaActual
     }
-    getCurrentTime() {
-        return this.fechaActual.toLocaleTimeString()
+    fechaEstaVencida(fechaReserva: Date) {
+        return (this.fechaActual.getDate < fechaReserva.getDate)
     }
-    getFormatDate(date: string): any {
-        let newdate = new Date(date);
-        let customFormat = 'MM/dd/yyyy';
-        let formattedDate = new DatePipe('en-US').transform(newdate, customFormat);
-        return formattedDate
+    horaEstaVencida(horaReserva: Date) {
+        return (this.fechaActual.getTime < horaReserva.getTime)
     }
-    getFormatTime(hora:any) {
-        let datePipe = new DatePipe('es-Mx');
-        let horaFormat = datePipe.transform(hora, 'hh:mm a');
-        return horaFormat
+    verificarVencida(reservasTotales: ReservaType[]) {
+        let reservasMod: ReservaType[] = []
+        reservasTotales.map((reserva) => {
+            let fechaAux = new Date(reserva.fecha_reservar)
+            if (this.fechaActual.getDay() > fechaAux.getDay()
+                && this.fechaActual.getTime() > fechaAux.getTime() && reserva.vencida != 1) {
+                reserva.activa = 0
+                reserva.vencida = 1
+                reservasMod.push(reserva)
+            }
+        })
+        return reservasMod
     }
-    fechaEstaVencida(fechaActual: string, fechaReserva: string) {
-        let ret = true
-        if (Date.parse(fechaActual) < Date.parse(fechaReserva)) return ret
-        else return !ret
+    comporbarAforo(reservasTotales: ReservaType[], aforoEspFis: number) {
+        return reservasTotales.length < aforoEspFis
     }
-    horaEstaVencida(horaActual:string,horaReserva:string){
-        let [hrActual,MinActual] = horaActual.split(':')
-        let [hrReserva,MinReserva] = horaReserva.split(':')
-        let ret = true
-        if(Number(hrActual)<Number(hrReserva)&&Number(MinActual)<Number(MinReserva))return ret
-        else return !ret
-    }
-
 }

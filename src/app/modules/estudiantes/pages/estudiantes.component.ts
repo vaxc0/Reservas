@@ -10,6 +10,7 @@ import { ToastService } from 'src/app/core/services/toast.service';
 import { AuthService } from '../../auth/service/auth.service';
 import { EspaciosFisicosService } from './../../../core/services/espaciosFisicos.service';
 import { Utils } from 'src/app/core/shared/utils/utils';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-estudiantes',
@@ -18,12 +19,14 @@ import { Utils } from 'src/app/core/shared/utils/utils';
 })
 export class EstudiantesComponent implements OnInit {
   modalRef!: BsModalRef;
+  intervalo = interval(30000)//evalua cada 30 segundos 
   nombre: string = 'Dev V4x'
   usuario!: Usuario
   textosEstudiante: AcordeonType[] = Constants.textosEstudiante
+  reservasTotales: any = []
   reservasUsuario: ReservaType[] = []
   reservaSelected!: ReservaType
-  
+
   espacionFisicoDeReserva: EspacioFisicoType[] = []
 
   constructor(
@@ -38,7 +41,21 @@ export class EstudiantesComponent implements OnInit {
   ngOnInit() {
     this.usuario = this.authService.getCurrentUser()
     if (this.usuario.nombre != undefined) this.nombre = this.usuario.nombre
+    //
     this.getReservas()
+    this.getReservasTotales()
+    //
+    this.intervalo.subscribe(() => {
+      let reservasMod = this.utils.verificarVencida(this.reservasTotales)
+      console.log(reservasMod)
+      if (reservasMod.length != 0) {
+        reservasMod.map((reservaM) => {
+          this.reservasService.updateReserva(reservaM, String(reservaM.id)).subscribe(() => {
+            this.getReservasTotales()
+          })
+        })
+      }
+    })
   }
   logOut() {
     this.authService.loggOut()
@@ -49,6 +66,12 @@ export class EstudiantesComponent implements OnInit {
       // console.log(this.reservasUsuario)
     })
   }
+  getReservasTotales() {
+    this.reservasService.getReservas().subscribe((data) => {
+      this.reservasTotales = data
+      // console.log("reservas totales", this.reservasTotales)
+    })
+  }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -57,24 +80,10 @@ export class EstudiantesComponent implements OnInit {
     }
   }
   cancelarReserva() {
-    let horaActual = this.utils.getCurrentTime()
-    let fechaActual = this.utils.getCurrentDate()
-    let fechaReservaFormated = this.utils.getFormatDate(this.reservaSelected.fecha_reservar)
-    let fechavencida = this.utils.fechaEstaVencida(fechaActual, fechaReservaFormated)
-    let hrvencida = this.utils.horaEstaVencida(horaActual, this.reservaSelected.hora_finalReservar)
-    if (fechavencida&&hrvencida) {
-      this.reservasService.deleteReserva(String(this.reservaSelected.id)).subscribe((res)=>{
-        this.toastService.show('Mensaje', res.message)
-        this.getReservas()
-      })
-    }else {
-      this.toastService.show('Mensaje', 'No puedes cancelar la reserva Seleccionada')
-      this.reservaSelected.vencida = 1
-      this.reservaSelected.activa = 0
-      this.reservasService.updateReserva(this.reservaSelected,String(this.reservaSelected.id)).subscribe((res)=>{
-        this.toastService.show('Mensaje', res.message)
-      })
-    }
+    this.reservasService.deleteReserva(String(this.reservaSelected.id)).subscribe((res) => {
+      this.toastService.show('Mensaje', res.message)
+      this.getReservas()
+    })
   }
   onCloseModal() {
     this.espacionFisicoDeReserva.pop()

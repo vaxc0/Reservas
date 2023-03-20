@@ -11,6 +11,8 @@ import { AcordeonComponent } from './components/acordeon/acordeon.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 //ngb
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //services
@@ -41,6 +43,8 @@ import { ReglasService } from "../services/reglas.service";
         BsDropdownModule,
         TypeaheadModule,
         FormsModule,
+        TimepickerModule.forRoot(),
+        BsDatepickerModule,
         NgbToast,
         NgbModalModule,
         ModalModule.forRoot()
@@ -60,6 +64,7 @@ import { ReglasService } from "../services/reglas.service";
         RouterModule,
         CommonModule,
         FormsModule,
+        BsDatepickerModule,
         // BrowserAnimationsModule,
         NotFoundComponent,
         AcordeonComponent,
@@ -74,7 +79,8 @@ import { ReglasService } from "../services/reglas.service";
         AccordionModule,
         BsDropdownModule,
         TypeaheadModule,
-        ModalModule
+        ModalModule,
+        TimepickerModule
     ],
     providers: [//servicios
         RolesService,
